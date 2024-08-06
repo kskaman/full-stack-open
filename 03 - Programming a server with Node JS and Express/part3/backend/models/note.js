@@ -3,9 +3,7 @@ const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 
 
-//const url = process.env.MONGODB_URI
-const url = `mongodb+srv://kskaman:Kaman@cluster0.gy6mx8e.mongodb.net/?
-retryWrites=true&w=majority&appName=Cluster0`
+const url = process.env.MONGODB_URI
 
 console.log('connecting to', url)
 
