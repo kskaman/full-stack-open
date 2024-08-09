@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "test": "node --test",
     "build:ui": "rd /s /q dist && cd ../frontend && npm run build && xcopy dist ..\\backend /E /I /H /Y",
     "deploy:full": "npm run build:ui && git add . && git commit -m \"uibuild\" && git push",
     "lint": "eslint ."
