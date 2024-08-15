@@ -1,5 +1,6 @@
 const config = require('./utils/config')
 const express = require('express')
+require('express-async-errors')
 const app = express()
 const cors = require('cors')
 const notesRouter = require('./controllers/notes')
@@ -16,6 +17,7 @@ mongoose.connect(config.MONGODB_URI)
     logger.info('connected to MongoDB')
   })
   .catch((error) => {
+    logger.error('could not connect to : ', config.MONGODB_URI)
     logger.error('error connecting to MongoDB:', error.message)
   })
 
