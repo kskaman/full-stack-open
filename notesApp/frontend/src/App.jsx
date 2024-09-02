@@ -12,8 +12,6 @@ const App = () => {
   const [notes, setNotes] = useState([])
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -79,6 +77,12 @@ const App = () => {
     }
   }
 
+  const handleLogout = () => {
+    window.localStorage.removeItem('loggedNoteappUser')
+    noteService.setToken(null)
+    setUser(null)
+  }
+
   const notesToShow = showAll
     ? notes
     : notes.filter(note => note.important)
@@ -92,15 +96,12 @@ const App = () => {
       {!user && 
       <Togglable buttonLabel="login">
         <LoginForm
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
+            handleLogin={handleLogin}
           />
         </Togglable>}
       {user && <div>
-        <p>{user.name} logged in</p>
+        <p>{user.name} logged in {user.id}</p>
+        <button onClick={handleLogout}>logout</button>
         <Togglable buttonLabel="new note">
           <NoteForm
             createNote={addNote}

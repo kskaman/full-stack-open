@@ -1,17 +1,17 @@
-import { useState, usestate } from 'react'
+import { useState } from 'react'
 
 const LoginForm = ({
-  handleSubmit
+  handleLogin
 }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleUsernameChange = (target) => setUsername(target.value)
-  const handlePasswordChange = (target) => setPassword(target.value)
+  const handleUsernameChange = (event) => setUsername(event.target.value)
+  const handlePasswordChange = (event) => setPassword(event.target.value)
 
   const onSubmit = (event) => {
     event.preventDefault()
-    handleSubmit({
+    handleLogin({
       username, password
     })
 
